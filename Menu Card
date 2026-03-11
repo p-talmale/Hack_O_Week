@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HighWay Glory | Menu</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    transition: transform 0.3s ease;
+}
+
+.card:hover img {
+    transform: scale(1.05);
+}
+
+
+body {
+    background: #f4f4f4;
+    color: #333;
+}
+
+/* HERO SECTION */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+    url("https://images.unsplash.com/photo-1504674900247-0877df9cc836") center/cover;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 3em;
+}
+
+.hero p {
+    margin-top: 10px;
+    font-size: 1.2em;
+}
+
+/* MENU SECTION */
+.menu {
+    max-width: 1100px;
+    margin: auto;
+    padding: 40px 20px;
+}
+
+.section {
+    margin-bottom: 50px;
+}
+
+.section h2 {
+    text-align: center;
+    color: #008b00;
+    margin-bottom: 25px;
+    font-size: 2em;
+}
+
+/* MENU CARDS */
+.items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.card h3 {
+    color: #008b00;
+}
+
+.price {
+    font-weight: bold;
+    margin-top: 10px;
+    color: #444;
+}
+
+/* FOOTER */
+footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+footer p {
+    font-size: 0.9em;
+}
+
+/* BUTTON */
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 25px;
+    background: #008b00;
+    color: white;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background: #008b00;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="hero">
+    <div>
+        <h1>Highway Glory</h1>
+        <p>Where Flavor Meets Perfection</p>
+        <a href="#menu" class="btn">View Menu</a>
+    </div>
+</div>
+
+<!-- MENU -->
+<div class="menu" id="menu">
+
+    <div class="section">
+        <h2>Starters</h2>
+        <div class="items">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092" alt="Garlic Bread">
+                <h3>Garlic Bread</h3>
+                <p>Crispy bread with garlic butter</p>
+                <div class="price">Rs199</div>
+            </div>
+            <div class="card">
+                <img src="https://www.recipetineats.com/tachyon/2024/11/New-Oreleans-chicken-wings_1.jpg?resize=480%2C270" alt="Chicken Wings">
+                <h3>Chicken Wings</h3>
+                <p>Spicy & juicy wings</p>
+                <div class="price">Rs499</div>
+            </div>
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeihZ6SwJArwvIa8UXWYshAl-ngukLunzpqw&s" alt="Spring Rolls">
+                <h3>Spring Rolls</h3>
+                <p>Veg rolls with dip</p>
+                <div class="price">Rs149</div>
+            </div>
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGyxAQzO15v1BwaTjrg4QJP4_hb1OVQJiqIA&s" alt="Crispy Veg">
+                <h3>Crispy Veg</h3>
+                <p>Crispy and Crunchy with dip</p>
+                <div class="price">Rs249</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Main Course</h2>
+        <div class="items">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec" alt="Grilled Chicken">
+                <h3>Grilled Chicken</h3>
+                <p>Served with veggies</p>
+                <div class="price">Rs399</div>
+            </div>
+            <div class="card">
+                <img src="https://www.indiafoodnetwork.in/wp-content/uploads/2020/05/MT-Cover.jpg" alt="Special Thali">
+                <h3>Special Thali</h3>
+                <p>Specials</p>
+                <div class="price">Rs199</div>
+            </div>
+            <div class="card">
+                <img src="https://thumbs.dreamstime.com/b/dum-handi-chicken-biryani-cooked-earthen-clay-pot-popular-indian-non-vegetarian-dish-rice-meat-spices-bowl-sauce-360241112.jpg" alt="Handi">
+                <h3>Biriyani Handi</h3>
+                <p>Desi Handis</p>
+                <div class="price">Rs499</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Desserts</h2>
+        <div class="items">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c" alt="Chocolate Cake">
+                <h3>Chocolate Cake</h3>
+                <p>Rich & moist</p>
+                <div class="price">Rs159</div>
+            </div>
+            <div class="card">
+                <img src="https://www.keep-calm-and-eat-ice-cream.com/wp-content/uploads/2022/08/Ice-cream-sundae-hero-11.jpg" alt="Ice Cream Sundae">
+                <h3>Ice Cream Sundae</h3>
+                <p>Vanilla with toppings</p>
+                <div class="price">Rs159</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <p>📍 SIT Mess | ☎ 123-456-7890</p>
+    <p>© 2026 Restro</p>
+</footer>
+
+</body>
+</html>
