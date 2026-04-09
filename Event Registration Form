@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TechNova Registration</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+font-family:Segoe UI;
+}
+
+body{
+background:#0b1c2d;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+padding:20px;
+}
+
+.main-container{
+background:white;
+width:600px;
+padding:40px;
+border-radius:10px;
+}
+
+.form-header{
+text-align:center;
+margin-bottom:25px;
+}
+
+.form-header h1{
+color:#4a90e2;
+}
+
+.event-info-banner{
+background:#e3f2fd;
+padding:10px;
+margin-top:10px;
+border-radius:5px;
+display:flex;
+justify-content:center;
+gap:20px;
+}
+
+fieldset{
+border:1px solid #ddd;
+padding:20px;
+margin-bottom:20px;
+border-radius:5px;
+}
+
+legend{
+font-weight:bold;
+}
+
+.form-group{
+margin-bottom:15px;
+}
+
+label{
+display:block;
+margin-bottom:5px;
+font-weight:600;
+}
+
+input,select{
+width:100%;
+padding:10px;
+border:1px solid #ccc;
+border-radius:5px;
+}
+
+.row{
+display:flex;
+gap:15px;
+}
+
+.radio-group label,
+.checkbox-group label{
+display:inline-block;
+margin-right:10px;
+font-weight:normal;
+}
+
+.submit-btn{
+width:100%;
+padding:15px;
+background:#4a90e2;
+border:none;
+color:white;
+font-size:18px;
+border-radius:5px;
+cursor:pointer;
+}
+
+.submit-btn:hover{
+background:#357abd;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="main-container">
+
+<div class="form-header">
+<h1>TechNova 2024</h1>
+<p>Student Registration Form</p>
+
+<div class="event-info-banner">
+<span>📅 March 24-26</span>
+<span>📍 Main Auditorium</span>
+</div>
+
+</div>
+
+<form id="registrationForm">
+
+<fieldset>
+
+<legend>Personal Details</legend>
+
+<div class="form-group">
+<label>Full Name</label>
+<input type="text" name="fullname" required>
+</div>
+
+<div class="form-group">
+<label>Email</label>
+<input type="email" name="email" required>
+</div>
+
+<div class="form-group">
+<label>Phone</label>
+<input type="tel" name="phone">
+</div>
+
+</fieldset>
+
+<fieldset>
+
+<legend>Academic Information</legend>
+
+<div class="row">
+
+<div class="form-group">
+<label>Roll Number</label>
+<input type="text" name="rollno" required>
+</div>
+
+<div class="form-group">
+<label>Department</label>
+
+<select name="dept">
+<option>Computer Science</option>
+<option>Information Tech</option>
+<option>ECE</option>
+<option>Mechanical</option>
+<option>Civil</option>
+</select>
+
+</div>
+
+</div>
+
+<div class="form-group">
+
+<label>Year</label>
+
+<div class="radio-group">
+<label><input type="radio" name="year" value="1">1st Year</label>
+<label><input type="radio" name="year" value="2">2nd Year</label>
+<label><input type="radio" name="year" value="3">3rd Year</label>
+<label><input type="radio" name="year" value="4">4th Year</label>
+</div>
+
+</div>
+
+</fieldset>
+
+<fieldset>
+
+<legend>Event Details</legend>
+
+<div class="row">
+
+<div class="form-group">
+<label>Date</label>
+<input type="date" name="event-date">
+</div>
+
+<div class="form-group">
+<label>Venue</label>
+
+<select name="venue-pref">
+<option>Main Auditorium</option>
+<option>Seminar Hall</option>
+<option>Open Ground</option>
+</select>
+
+</div>
+
+</div>
+
+<div class="form-group">
+
+<label>Main Event</label>
+
+<select name="event-main">
+<option>Hackathon</option>
+<option>RoboWars</option>
+<option>Debate</option>
+<option>Gaming</option>
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>Workshops</label>
+
+<div class="checkbox-group">
+<label><input type="checkbox" name="workshop" value="AI">AI/ML</label>
+<label><input type="checkbox" name="workshop" value="Cyber">Cyber Security</label>
+<label><input type="checkbox" name="workshop" value="Cloud">Cloud</label>
+</div>
+
+</div>
+
+</fieldset>
+
+<button type="submit" class="submit-btn">Register Now</button>
+
+</form>
+
+</div>
+
+<script>
+
+document.getElementById("registrationForm").addEventListener("submit",function(e){
+
+e.preventDefault();
+
+const f=e.target;
+
+const workshops=[];
+
+document.querySelectorAll('input[name="workshop"]:checked')
+.forEach(w=>workshops.push(w.value));
+
+const data=`
+<table border="1">
+<tr><th>Field</th><th>Value</th></tr>
+<tr><td>Name</td><td>${f.fullname.value}</td></tr>
+<tr><td>Email</td><td>${f.email.value}</td></tr>
+<tr><td>Phone</td><td>${f.phone.value}</td></tr>
+<tr><td>Roll</td><td>${f.rollno.value}</td></tr>
+<tr><td>Department</td><td>${f.dept.value}</td></tr>
+<tr><td>Year</td><td>${f.year.value}</td></tr>
+<tr><td>Date</td><td>${f["event-date"].value}</td></tr>
+<tr><td>Venue</td><td>${f["venue-pref"].value}</td></tr>
+<tr><td>Event</td><td>${f["event-main"].value}</td></tr>
+<tr><td>Workshops</td><td>${workshops.join(", ")}</td></tr>
+</table>
+`;
+
+const link=document.createElement("a");
+
+link.href="data:application/vnd.ms-excel,"+encodeURIComponent(data);
+
+link.download="TechNova_Registration.xls";
+
+link.click();
+
+alert("Registration Successful");
+
+});
+
+</script>
+
+</body>
+</html>
