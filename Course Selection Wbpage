@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduStream | Course Selection</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --secondary: #64748b;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+
+        /* Search and Filter Container */
+        .controls {
+            max-width: 1000px;
+            margin: 0 auto 30px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .search-bar {
+            flex: 2;
+            min-width: 250px;
+            padding: 12px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .search-bar:focus {
+            border-color: var(--primary);
+        }
+
+        .filter-dropdown {
+            flex: 1;
+            min-width: 150px;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+        }
+
+        /* Course Grid */
+        .course-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .course-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-img {
+            height: 160px;
+            background: #cbd5e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+        }
+
+        .course-content {
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        .category-tag {
+            display: inline-block;
+            background: #e0e7ff;
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .course-title {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .course-info {
+            font-size: 0.9rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .btn-enroll {
+            width: 100%;
+            padding: 10px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .btn-enroll:hover {
+            opacity: 0.9;
+        }
+
+        .no-results {
+            text-align: center;
+            grid-column: 1 / -1;
+            padding: 40px;
+            color: var(--secondary);
+            display: none;
+        }
+
+        /* Responsive Tweaks */
+        @media (max-width: 600px) {
+            .controls {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Explore Courses</h1>
+        <p>Find the perfect field to kickstart your career</p>
+    </header>
+
+    <div class="controls">
+        <input type="text" id="searchInput" class="search-bar" placeholder="Search for courses (e.g. Python, Design)...">
+        
+        <select id="filterDropdown" class="filter-dropdown">
+            <option value="all">All Categories</option>
+            <option value="technology">Technology</option>
+            <option value="business">Business</option>
+            <option value="design">Design</option>
+            <option value="science">Science</option>
+        </select>
+    </div>
+
+    <div class="course-grid" id="courseGrid">
+        </div>
+
+    <div id="noResults" class="no-results">
+        <h3>No courses found matching your criteria.</h3>
+    </div>
+
+    <script>
+        const courses = [
+            { title: "Full Stack Web Dev", category: "technology", level: "Intermediate", duration: "12 Weeks", color: "#3b82f6" },
+            { title: "Digital Marketing Pro", category: "business", level: "Beginner", duration: "6 Weeks", color: "#10b981" },
+            { title: "UI/UX Fundamentals", category: "design", level: "Beginner", duration: "8 Weeks", color: "#f59e0b" },
+            { title: "Data Science with Python", category: "technology", level: "Advanced", duration: "16 Weeks", color: "#6366f1" },
+            { title: "Quantum Physics Intro", category: "science", level: "Advanced", duration: "10 Weeks", color: "#ec4899" },
+            { title: "Financial Analysis", category: "business", level: "Intermediate", duration: "5 Weeks", color: "#8b5cf6" },
+            { title: "Graphic Design Masterclass", category: "design", level: "Intermediate", duration: "10 Weeks", color: "#ef4444" },
+            { title: "Microbiology Basics", category: "science", level: "Beginner", duration: "4 Weeks", color: "#14b8a6" }
+        ];
+
+        const grid = document.getElementById('courseGrid');
+        const searchInput = document.getElementById('searchInput');
+        const filterDropdown = document.getElementById('filterDropdown');
+        const noResults = document.getElementById('noResults');
+
+        function displayCourses(filteredList) {
+            grid.innerHTML = "";
+            
+            if (filteredList.length === 0) {
+                noResults.style.display = "block";
+                return;
+            }
+
+            noResults.style.display = "none";
+            filteredList.forEach(course => {
+                const card = `
+                    <div class="course-card" data-category="${course.category}">
+                        <div class="course-img" style="background-color: ${course.color}">${course.category}</div>
+                        <div class="course-content">
+                            <span class="category-tag">${course.category.toUpperCase()}</span>
+                            <h3 class="course-title">${course.title}</h3>
+                            <p class="course-info"><strong>Level:</strong> ${course.level}</p>
+                            <p class="course-info"><strong>Duration:</strong> ${course.duration}</p>
+                            <button class="btn-enroll">Enroll Now</button>
+                        </div>
+                    </div>
+                `;
+                grid.innerHTML += card;
+            });
+        }
+
+        function filterCourses() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const selectedCategory = filterDropdown.value;
+
+            const filtered = courses.filter(course => {
+                const matchesSearch = course.title.toLowerCase().includes(searchTerm);
+                const matchesCategory = selectedCategory === "all" || course.category === selectedCategory;
+                return matchesSearch && matchesCategory;
+            });
+
+            displayCourses(filtered);
+        }
+
+        searchInput.addEventListener('input', filterCourses);
+        filterDropdown.addEventListener('change', filterCourses);
+
+        // Initial load
+        displayCourses(courses);
+    </script>
+</body>
+</html>
